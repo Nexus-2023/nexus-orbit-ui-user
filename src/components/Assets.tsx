@@ -46,12 +46,11 @@ export function AssetTable() {
   return (
     <>
       <div className="mt-8">
-        <div className="flex text-black text-lg   font-[550] justify-between py-2  w-full border-b-2 border-[#C9CFDA]">
+        <div className="flex text-black text-lg   font-[550] justify-around items-center py-2  w-full border-b-2 border-[#C9CFDA]">
           <h1 className="">Token</h1>
           <h1 className="">Current Weight</h1>
           <h1 className="min-w-32">Eth Amount</h1>
-          <h1 className="min-w-32">Target Weight</h1>
-          <h1 className="  min-w-28">Action</h1>
+          <h1 className="">Target Weight</h1>
         </div>
 
         {AssetData.map((asset, index) => (
@@ -72,12 +71,11 @@ export function DeListTable() {
   return (
     <>
       <div className="mt-8">
-        <div className="flex text-black text-lg   font-[550] justify-between py-2  w-full border-b-2 border-[#C9CFDA]">
+        <div className="flex text-black text-lg   font-[550]   py-2  justify-around items-center w-full border-b-2 border-[#C9CFDA]">
           <h1 className="">Token</h1>
           <h1 className="">Current Weight</h1>
-          <h1 className="min-w-32">Eth Amount</h1>
-          <h1 className="min-w-32">Target Weight</h1>
-          <h1 className="  min-w-16">Action</h1>
+          <h1 className="">Eth Amount</h1>
+          <h1 className=" ">Target Weight</h1>
         </div>
 
         {AssetData.map((asset, index) => (
@@ -103,13 +101,11 @@ interface AssetRowProps {
 
 export function AssetRow({ ...props }: AssetRowProps) {
   return (
-    <div className="flex text-black text-lg   items-center mt-2 font-[550] justify-between w-full border-b-2 py-2 border-[#C9CFDA]">
+    <div className="flex text-black text-lg     mt-2 font-[550] justify-around items-center w-full border-b-2 py-2 border-[#C9CFDA]">
       <Image src={props.token} alt="Bridgetoken" />
       <h1 className="">{props.currentWeight}</h1>
       <h1 className="">{props.EthAmount}</h1>
       <h1 className="">{props.TargetWeight}</h1>
-
-      <ChangeLimitButton />
     </div>
   )
 }
@@ -120,8 +116,6 @@ export function DelistRow({ ...props }: AssetRowProps) {
       <h1 className="">{props.currentWeight}</h1>
       <h1 className="">{props.EthAmount}</h1>
       <h1 className="">{props.TargetWeight}</h1>
-
-      <DeListButton />
     </div>
   )
 }

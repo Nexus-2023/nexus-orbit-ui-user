@@ -37,20 +37,46 @@ export const SideBar = () => {
             } ease-in-out duration-300 rounded-md`}
           >
             {" "}
-            Change Limits
+            Rollup Dashboard
           </h1>
         </Link>
 
-        <Link href={"/whitelist"}>
+        <Link href={"/depositEth"}>
           <h1
             className={`text-md px-4 py-2 ${
-              pathname === "/whitelist"
+              pathname === "/depositEth"
                 ? "text-primary bg-white"
                 : "hover:text-primary hover:bg-white"
             } ease-in-out duration-300 rounded-md`}
           >
             {" "}
-            Whitelist/Delist
+            DepositEth
+          </h1>
+        </Link>
+
+        <Link href={"/withdrawEth"}>
+          <h1
+            className={`text-md px-4 py-2 ${
+              pathname === "/withdrawEth"
+                ? "text-primary bg-white"
+                : "hover:text-primary hover:bg-white"
+            } ease-in-out duration-300 rounded-md`}
+          >
+            {" "}
+            WithdrawEth
+          </h1>
+        </Link>
+
+        <Link href={"/viewTransaction"}>
+          <h1
+            className={`text-md px-4 py-2 ${
+              pathname === "/viewTransaction"
+                ? "text-primary bg-white"
+                : "hover:text-primary hover:bg-white"
+            } ease-in-out duration-300 rounded-md`}
+          >
+            {" "}
+            viewTransaction
           </h1>
         </Link>
       </div>

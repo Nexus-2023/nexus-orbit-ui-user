@@ -11,16 +11,27 @@ import { useRef, useEffect, useState } from "react"
 
 import { connectNexus } from "@/utils/connectContract"
 import { useRouter, useParams } from "next/navigation"
-import { AssetTable } from "@/components/Assets"
+import { AssetTable, DeListTable, WhiteListButton } from "@/components/Assets"
 
-import loadingStyles from "../styles/loading.module.css"
+import loadingStyles from "../../styles/loading.module.css"
+import { Button } from "@mui/material"
 
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
 
-  const elementsRef = useRef<Array<HTMLElement | null>>([])
-  const elementsWalletRef = useRef<Array<HTMLElement | null>>([])
-  const elementsWalletRef2 = useRef<Array<HTMLElement | null>>([])
+  const whitelisted = [
+    "0x8a770B7700f941Bb2E6Dd023AD3B22c2c41C5901",
+    "0xE4Cb6F91Cf8748F3FD0c9D281157b276DD437609",
+  ]
+
+  const isWhitelisted = address !== undefined && whitelisted.includes(address)
+  console.log("isWhitelisted", isWhitelisted)
+
+  const elementsRef = useRef<(HTMLDivElement | null)[]>([])
+
+  const elementsWalletRef = useRef<(HTMLDivElement | null)[]>([])
+
+  const elementsWalletRef2 = useRef<(HTMLDivElement | null)[]>([])
 
   console.log("Admin address ", address)
 
@@ -82,7 +93,7 @@ export default function Home() {
               // @ts-ignore
               ref={el => (elementsRef.current[0] = el)}
             >
-              Get Started
+              Admin Page{" "}
             </h1>
             <h1
               className="text-lg font-light mt-4 "
@@ -139,49 +150,54 @@ export default function Home() {
               <ConnectButton />
             </div>
 
-            {/* <div className="flex "> */}
-            <div className="flex flex-row  justify-around items-center mt-4 ">
-              <div className="border-2 w-[20rem] h-full bg-primary text-white text-xl  font-semibold rounded-2xl px-4 py-6 text-wrap text-center">
-                <h1>52</h1>
-                <h1>Staking Earned Returns</h1>
-              </div>
-              <div className="border-2 w-[20rem] h-full bg-primary text-white text-xl  font-semibold rounded-2xl px-4 py-6 text-wrap text-center">
-                <h1>1000</h1>
-                <h1>Total ETH bridged</h1>
-              </div>
-
-              <div className="border-2 w-[20rem] h-full bg-primary text-white text-xl  font-semibold rounded-2xl px-4 py-6 text-wrap text-center">
-                <h1>52,000</h1>
-                <h1>transactions processed</h1>
-              </div>
-            </div>
-
-            {/* <div className="flex flex-row  justify-around items-center mt-4 ">
-                <div className="border-2 w-[20rem] h-full bg-primary text-white text-2xl  font-semibold rounded-2xl p-4 text-wrap text-center">
-                  <h1>1000</h1>
-                  <h1>Total ETH bridged</h1>
-                </div>
-              </div>
-
-              <div className="flex flex-row  justify-around items-center mt-4 ">
-                <div className="border-2 w-[20rem] h-full bg-primary text-white text-2xl  font-semibold rounded-2xl p-4 text-wrap text-center">
-                  <h1>52,000</h1>
-                  <h1>No of transactions processed</h1>
-                </div>
-              </div>
-            </div> */}
             <div className="flex flex-col  space-y-4 mt-8">
-              <h1 className="text-5xl  text-black font-semibold">
-                Bridging Assets
+              <h1 className="text-7xl  text-black font-semibold">
+                Whitelist/Delist
               </h1>
 
-              <h1 className="text-md  text-gray-500 font-medium">
-                ETH associated assets in native bridge
+              <h1 className="text-lg  text-gray-500 font-medium">
+                Whitelist or Delist assets
               </h1>
             </div>
 
-            <AssetTable />
+            <DeListTable />
+
+            <div className=" flex justify-center w-full mt-6 -ml-4">
+              <WhiteListButton />
+            </div>
           </>
+          {/* {isWhitelisted ? (
+            <>
+              <div className=" absolute top-5 right-5 ">
+                <ConnectButton />
+              </div>
+
+              <div className="flex flex-col  space-y-4 mt-8">
+                <h1 className="text-7xl  text-black font-semibold">
+                  Whitelist/Delist
+                </h1>
+
+                <h1 className="text-lg  text-gray-500 font-medium">
+                  Whitelist or Delist assets
+                </h1>
+              </div>
+
+              <DeListTable />
+
+              <div className=" flex justify-center w-full mt-6 -ml-4">
+                <WhiteListButton />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className=" absolute top-5 right-5 ">
+                <ConnectButton />
+              </div>
+              <div className="flex justify-center mt-16 ">
+                <h1 className="text-4xl font-semibold ">Not Admin</h1>
+              </div>
+            </>
+          )} */}
         </>
       )}
     </div>
